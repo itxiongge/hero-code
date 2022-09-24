@@ -1,0 +1,6 @@
+syntax = "proto3";
+   option java_outer_classname = "BookMessage";
+   message Book{
+       int32 id = 1;
+       string name = 2;
+   }

@@ -1,0 +1,25 @@
+spring.shardingsphere.datasource.names: master,slave0,slave1
+# 配置主库
+spring.shardingsphere.datasource.master.type: com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.master.driverClassName: com.mysql.cj.jdbc.Driver
+spring.shardingsphere.datasource.master.jdbc-url: jdbc:mysql://123.57.135.5:3306/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+spring.shardingsphere.datasource.master.username: root
+spring.shardingsphere.datasource.master.password: hero@202207
+# 配置第一个从库
+spring.shardingsphere.datasource.slave0.type: com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.slave0.driverClassName: com.mysql.cj.jdbc.Driver
+spring.shardingsphere.datasource.slave0.jdbc-url: jdbc:mysql://47.95.211.46:3306/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+spring.shardingsphere.datasource.slave0.username: root
+spring.shardingsphere.datasource.slave0.password: hero@202207
+# 配置第二个从库
+spring.shardingsphere.datasource.slave1.type: com.zaxxer.hikari.HikariDataSource
+spring.shardingsphere.datasource.slave1.driverClassName: com.mysql.cj.jdbc.Driver
+spring.shardingsphere.datasource.slave1.jdbc-url: jdbc:mysql://123.57.135.5:3306/hello?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8
+spring.shardingsphere.datasource.slave1.username: root
+spring.shardingsphere.datasource.slave1.password: hero@202207
+
+spring.shardingsphere.masterslave.name: ms
+spring.shardingsphere.masterslave.master-data-source-name: master
+spring.shardingsphere.masterslave.slave-data-source-names: slave0,slave1
+
+# spring.shardingsphere.props.sql.show: true

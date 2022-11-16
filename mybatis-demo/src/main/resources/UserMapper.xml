@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+mybatis-3-mapper.dtd 头部的文档声明，验证当前文档的正确性
+namespace属性：指定当前映射器的命名空间
+-->
+<mapper namespace="test">
+    <!--
+    select标签：内部指定查询SQL语句
+    id属性：SQL语句的唯一标识符
+    resultType属性：当前查询语句的返回值
+    -->
+    <select id="findAll" resultType="com.hero.pojo.User">
+        select * from t_user;
+    </select>
+</mapper>

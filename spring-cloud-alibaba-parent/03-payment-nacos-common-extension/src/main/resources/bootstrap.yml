@@ -1,0 +1,21 @@
+spring:
+  application:
+    ## 配置应用名称
+    name: nacos-common-extension-example
+  cloud:
+    nacos:
+      config:
+        ## 配置中心地址
+        server-addr: 127.0.0.1:8848
+        ## 配置文件扩展名称
+        file-extension: yml
+        # 配置分组
+        group: DEFAULT_GROUP
+        # 配置配置文件所在的组
+        extension-configs:
+          - data-id: common.properties
+            group: group_01
+            refresh: true
+          - data-id: log.properties
+            group: group_02
+            refresh: true

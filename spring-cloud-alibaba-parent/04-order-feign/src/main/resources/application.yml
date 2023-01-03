@@ -1,0 +1,32 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: msc-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+## 配置日志
+logging:
+  pattern:
+    console: level-%level %msg%n
+  level:
+    root: info
+    com.hero: debug
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000 #连接超时时间
+        readTimeout: 5000 #数据读取超时时间
+  compression:
+    request:
+      enabled: true # 请求压缩
+      mime-types: text/xml,application/xml,application/json # 压缩的类型
+      min-request-size: 2048 # 请求最小压缩的阈值
+    response:
+      enabled: true #响应压缩
+      useGzipDecoder: true #使用gzip解码器，解码响应数据
+  circuitbreaker:
+    enabled: true # 配置开启熔断器

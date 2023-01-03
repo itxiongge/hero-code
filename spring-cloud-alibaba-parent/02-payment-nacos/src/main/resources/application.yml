@@ -1,0 +1,19 @@
+server:
+  # 表示，没有port参数，使用8081端口
+  port: ${port:8081}
+spring:
+  cloud:
+    # 指定nacos注册中心的地址
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  # 指定微服务名称
+  application:
+    name: msc-payment
+# 配置日志
+logging:
+  pattern:
+    console: level-%level %msg%n
+  level:
+    root: info
+    com.hero: debug

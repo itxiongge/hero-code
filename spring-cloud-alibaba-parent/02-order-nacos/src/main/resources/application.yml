@@ -1,0 +1,16 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: msc-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+## 配置日志
+logging:
+  pattern:
+    console: level-%level %msg%n
+  level:
+    root: info
+    com.hero: debug

@@ -1,0 +1,76 @@
+server:
+  port: 9000
+spring:
+  cloud:
+    gateway:
+#      default-filters:
+#        - name: CircuitBreaker
+#            args:
+#              name: myCircuitBreaker
+#              fallbackUri: forward:/fallback
+      routes:
+#        # 路由id
+#        - id: baidu_route
+#          # 路由uri地址
+#          uri: https://www.baidu.com
+#          predicates: #断言就是路由的规则
+#            # 拦截所有请求
+#            - Path=/**
+        # 添加前缀 过滤器
+#        - id: prefixPath_filter
+#          uri: http://localhost:8080
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - PrefixPath=/order
+        #降级过滤器
+#        - id: circuitBreaker_filter
+#          uri: http://localhost:8888
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - name: CircuitBreaker
+#              args:
+#                name: myCircuitBreaker
+#                fallbackUri: forward:/fallback
+        # 限流过滤器
+#        - id: requestRateLimiter_filter
+#          uri: http://localhost:8888
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                key-resolver: "#{@keyResolver}"
+#                redis-rate-limiter.replenishRate: 10
+#                redis-rate-limiter.burstCapacity: 50
+        # 添加前缀 过滤器
+#        - id: prefixPath_filter
+#          uri: http://localhost:8080
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - PrefixPath=/order
+        # 去除前缀 过滤器
+#        - id: stripPrefix_filter
+#          uri: http://localhost:8080
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - StripPrefix=1
+        # AddRequestParameter 过滤器
+#        - id: addRequestParameter_filter
+#          uri: http://localhost:8888
+#          predicates:
+#            - Path=/**
+#          filters:
+#            - AddRequestParameter=color, blue
+        # 重写路径 过滤器
+        # localhost:9000/information/param -->
+        # localhost:9000/info/param -->
+        - id: rewritePath_filter
+          uri: http://localhost:8888
+          predicates:
+            - Path=/information/**
+          filters:
+            - RewritePath=/information(?<segment>/?.*), /info$\{segment}

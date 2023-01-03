@@ -1,0 +1,39 @@
+server:
+  port: 9000
+spring:
+  cloud:
+    gateway:
+      routes:
+#        # 路由id
+#        - id: baidu_route
+#          # 路由uri地址
+#          uri: http://localhost:8081
+#          predicates: #断言就是路由的规则
+#            # 拦截所有请求
+#            - Path=/**
+        # 配置Path断言工厂1，路由到payment
+#        - id: path_payment_route
+#          uri: http://localhost:8081
+#          predicates:
+#            - Path=/payment/**
+#        # 配置Path断言工厂2，路由到order
+#        - id: path_order_route
+#          uri: http://localhost:8080
+#          predicates:
+#            - Path=/order/**
+#        # 路由优先级
+#        - id: bing_route
+#          uri: https://cn.bing.com/
+#          order: 2 # 值越小优先级越高
+#          predicates:
+#            - Path=/**
+#        - id: baidu_route
+#          uri: https://www.baidu.com/
+#          order: 1
+#          predicates:
+#            - Path=/**
+        # after断言工厂
+        - id: after_route
+          uri: https://www.baidu.com
+          predicates:
+            - After=2022-10-20T17:42:47.789-07:00[Asia/Shanghai]

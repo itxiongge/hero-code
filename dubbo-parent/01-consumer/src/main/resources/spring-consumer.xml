@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--指定当前工程在Monitor中的名称，一般为当前工程名称-->
+    <dubbo:application name="01-consumer"/>
+
+    <!--指定注册中心：不使用注册中心-->
+    <dubbo:registry address="N/A"/>
+
+    <!--直连式连接提供者-->
+    <dubbo:reference id="userService" interface="com.hero.service.UserService" url="dubbo://localhost:20880"/>
+</beans>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="10-consumer-async"/>
+
+    <dubbo:registry address="zookeeper://zkOS:2181" />
+
+    <dubbo:reference id="otherService"  timeout="20000" interface="com.hero.service.OtherService" >
+        <dubbo:method name="doThird" async="true"/>
+        <dubbo:method name="doFourth" async="true"/>
+    </dubbo:reference>
+
+</beans>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="06-provider-timeout" />
+
+    <!--指定服务注册中心：zk单机-->
+    <dubbo:registry address="zookeeper://zkOS:2181"/>
+
+    <bean id="userService" class="com.hero.provider.UserServiceImpl"/>
+
+    <dubbo:service interface="com.hero.service.UserService" ref="userService" timeout="2000"/>
+
+    <!--&lt;!&ndash;限制当前接口中每个方法的并发执行数不能超过10个&ndash;&gt;-->
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" executes="10"/>-->
+
+    <!--&lt;!&ndash;限制当前接口中的hello()方法的并发执行数不能超过10个&ndash;&gt;-->
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" >-->
+    <!--    <dubbo:method name="hello" executes="10"/>-->
+    <!--</dubbo:service>-->
+
+    <!--&lt;!&ndash;配置方式01-限制当前提供者在使用dubbo协议时最多接受10个消费者连接&ndash;&gt;-->
+    <!--<dubbo:provider protocol="dubbo" accepts="10"/>-->
+
+    <!--&lt;!&ndash;配置方式02-限制当前提供者在使用dubbo协议时最多接受10个消费者连接&ndash;&gt;-->
+    <!--<dubbo:protocol name="dubbo" port="20880" accepts="10"/>-->
+
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" actives="10"/>-->
+
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" >-->
+    <!--    <dubbo:method name="hello" actives="10"/>-->
+    <!--</dubbo:service>-->
+
+    <!--&lt;!&ndash;限制当前接口中每个方法的并发连接数不能超过10个&ndash;&gt;-->
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" connections="10"/>-->
+    <!--&lt;!&ndash;限制当前接口hello()方法的并发连接数不能超过10个&ndash;&gt;-->
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" >-->
+    <!--    <dubbo:method name="hello" connections="10"/>-->
+    <!--</dubbo:service>-->
+
+</beans>

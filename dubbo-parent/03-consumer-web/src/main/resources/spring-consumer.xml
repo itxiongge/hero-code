@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xmlns:mvc="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <dubbo:application name="03-consumer-web"/>
+
+    <!--指定服务注册中心：zk单机-->
+    <dubbo:registry address="zookeeper://zkOS:2181"/>
+
+    <!--订阅服务：动态代理创建对象，自动注入Spring的容器，网络通信RPC调用-->
+    <dubbo:reference id="userService" interface="com.hero.service.UserService"/>
+
+    <!--注册处理器-->
+    <mvc:component-scan base-package="com.hero.controller"/>
+</beans>

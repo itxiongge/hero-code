@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="09-provider-oneway"/>
+
+    <!--声明注册中心：仅订阅-->
+    <!--<dubbo:registry id="gzCenter" address="zookeeper://123.56.222.31:2181" register="false"/>-->
+    <!--声明注册中心：仅注册-->
+    <dubbo:registry id="gzCenter" address="zookeeper://123.56.222.31:2181" subscribe="false"/>
+
+    <!--注册Service实现类-->
+    <bean id="wxPayService" class="com.hero.provider.WxPayServiceImpl"/>
+    <bean id="aliPayService" class="com.hero.provider.AliPayServiceImpl"/>
+
+    <!--暴露服务-->
+    <dubbo:service interface="com.hero.service.UserService"
+                   ref="wxPayService" group="pay.wx" register="gzCenter"/>
+    <dubbo:service interface="com.hero.service.UserService"
+                   ref="aliPayService" group="pay.ali" register="gzCenter"/>
+
+
+
+</beans>

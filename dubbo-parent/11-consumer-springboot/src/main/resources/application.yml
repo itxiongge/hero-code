@@ -1,0 +1,11 @@
+spring:
+  # 功能等价于spring-dubbo配置文件中的<dubbo:application/>
+  application:
+    name: 11-consumer-springboot
+  # 指定zk注册中心
+  dubbo:
+    registry: zookeeper://zkOS:2181
+    # zk集群作注册中心
+    # registry: zookeeper://zkOS1:2181?backup=zkOS2:2181,zkOS3:2181
+server:
+  port: 8081

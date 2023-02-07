@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="08-consumer-registers"/>
+
+    <!--声明注册中心-->
+    <dubbo:registry id="bjCenter" address="zookeeper://123.56.222.31:2181"/>  <!--北京中心-->
+    <dubbo:registry id="shCenter" address="zookeeper://101.201.71.221:2181"/>  <!--上海中心-->
+    <dubbo:registry id="gzCenter" address="zookeeper://101.17.187.78:2181"/>  <!--广州中心-->
+
+    <!--指定调用bjCenter注册中心微信服务-->
+    <dubbo:reference id="bjWxPay"  group="pay.wx" registry="bjCenter" interface="com.hero.service.UserService"/>
+
+    <!--指定调用gzCenter与cqCenter注册中心支付宝服务-->
+    <dubbo:reference id="shAliPay"  group="pay.ali" registry="shCenter" interface="com.hero.service.UserService"/>
+    <dubbo:reference id="gzAliPay"  group="pay.ali" registry="gzCenter" interface="com.hero.service.UserService"/>
+
+</beans>

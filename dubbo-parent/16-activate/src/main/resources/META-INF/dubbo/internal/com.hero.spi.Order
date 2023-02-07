@@ -1,0 +1,5 @@
+alipay=com.hero.spi.AlipayOrder
+wechat=com.hero.spi.WechatOrder
+card=com.hero.spi.CardOrder
+cash=com.hero.spi.CashOrder
+coupon=com.hero.spi.CouponOrder

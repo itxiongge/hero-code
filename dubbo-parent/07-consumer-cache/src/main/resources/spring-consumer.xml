@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="07-consumer-cache"/>
+
+    <dubbo:registry address="zookeeper://zkOS:2181" />
+
+    <dubbo:reference id="userService" cache="true" interface="com.hero.service.UserService"/>
+
+    <!--<dubbo:reference id="userService" interface="com.hero.service.UserService" >-->
+    <!--    &lt;!&ndash;设置方法级别的声明式缓存&ndash;&gt;-->
+    <!--    <dubbo:method name="hello" cache="true"/>-->
+    <!--</dubbo:reference>-->
+
+</beans>

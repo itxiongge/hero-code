@@ -1,0 +1,4 @@
+alipay=com.hero.spi.AlipayOrder
+wechat=com.hero.spi.WechatOrder
+wrapperone=com.hero.spi.OrderWrapperOne
+wrappertwo=com.hero.spi.OrderWrapperTwo

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="02-consumer-zookeeper">
+        <dubbo:parameter key="qos.port" value="33333"/>
+    </dubbo:application>
+
+    <!--指定服务注册中心：zk单机-->
+    <!-- zkOS ==> 127.0.0.1 -->
+    <dubbo:registry address="zookeeper://zkOS:2181" />
+
+    <!--<dubbo:registry protocol="zookeeper" address="zkOS:2181"/>-->
+
+    <!--<dubbo:reference id="userService" check="false" interface="com.hero.service.UserService"/>-->
+
+    <!--指定服务注册中心：zk集群-->
+    <!--<dubbo:registry address="zookeeper://zkOS1:2181?backup=zkOS2:2181,zkOS3:2181,zkOS4:2181"/>-->
+    <!--<dubbo:registry protocol="zookeeper" address="zkOS1:2181,zkOS2:2181,zkOS3:2181,zkOS4:2181"/>-->
+
+    <!--指定调用服务的所有方法均采用轮询负载均衡算法-->
+    <dubbo:reference id="userService" check="false" interface="com.hero.service.UserService" loadbalance="roundrobin"/>
+
+    <!--指定服务的不同方法采用不同的负载均衡算法-->
+    <!--<dubbo:reference id="userService" check="false" interface="com.hero.service.UserService">-->
+    <!--    <dubbo:method name="doSth" loadbalance="random"/>-->
+    <!--    <dubbo:method name="hello" loadbalance="roundrobin"/>-->
+    <!--    <dubbo:method name="doSth" loadbalance="leastactive"/>-->
+    <!--</dubbo:reference>-->
+
+
+    <!--&lt;!&ndash;设置对指定服务最多重试3次，一次正常，3次重试&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" check="false" interface="com.hero.service.UserService" retries="3"/>-->
+
+
+    <!--<dubbo:reference id="userService" check="false" interface="com.hero.service.UserService">-->
+    <!--    &lt;!&ndash;设置对hello方法最多重试3次，一次正常，3次重试&ndash;&gt;-->
+    <!--    <dubbo:method name="hello" retries="3"/>-->
+    <!--</dubbo:reference>-->
+
+    <!--&lt;!&ndash;指定要调用的服务集群容错机制采用failfast&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" check="false" interface="com.hero.service.UserService" cluster="failfast"/>-->
+
+
+</beans>

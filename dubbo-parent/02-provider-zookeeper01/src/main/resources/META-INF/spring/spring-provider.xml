@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="02-provider-zookeeper01"/>
+
+
+    <dubbo:registry address="zookeeper://zkOS:2181"/>
+
+    <bean id="userService" class="com.hero.provider.UserServiceImpl"/>
+
+    <dubbo:protocol name="dubbo" port="20881"/>
+    <!--&lt;!&ndash;指定当前服务的所有方法均采用轮询负载均衡算法&ndash;&gt;-->
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" loadbalance="roundrobin"/>-->
+
+    <!--&lt;!&ndash;指定当前服务的不同方法均采用不同负载均衡算法&ndash;&gt;-->
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" >-->
+    <!--    <dubbo:method name="hello" loadbalance="random"/>-->
+    <!--    <dubbo:method name="doSth" loadbalance="roundrobin"/>-->
+    <!--    <dubbo:method name="doSth" loadbalance="leastactive"/>-->
+    <!--</dubbo:service>-->
+
+    <!--指定当前服务中的任意方法若调用失败，最多让消费者调用3次，一次正常，3次重试-->
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" retries="3"/>-->
+
+
+    <!--<dubbo:service interface="com.hero.service.UserService" ref="userService" >-->
+    <!--    &lt;!&ndash;指定当前服务中的特定方法若调用失败，最多让消费者调用几次&ndash;&gt;-->
+    <!--    <dubbo:method name="hello" retries="2"/>-->
+    <!--    <dubbo:method name="doSth" retries="3"/>-->
+    <!--    <dubbo:method name="doSth" retries="4"/>-->
+    <!--</dubbo:service>-->
+
+    <!--指定当前服务集群容错机制采用failfast-->
+    <dubbo:service interface="com.hero.service.UserService" ref="userService" cluster="failfast"/>
+</beans>

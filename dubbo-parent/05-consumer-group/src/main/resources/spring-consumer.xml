@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="05-consumer-group"/>
+
+    <dubbo:registry address="zookeeper://zkOS:2181" />
+
+    <!--指定调用微信服务-->
+    <!--<dubbo:reference id="wxPay"  group="pay.wx" interface="com.hero.service.UserService" />-->
+    <dubbo:reference id="wxPay"  group="pay.wx" interface="com.hero.service.UserService" protocol="dubbo"/>
+    <!--指定调用支付宝服务-->
+    <!--<dubbo:reference id="aliPay"  group="pay.ali" interface="com.hero.service.UserService" />-->
+    <dubbo:reference id="aliPay"  group="pay.ali" interface="com.hero.service.UserService" protocol="rmi"/>
+
+</beans>

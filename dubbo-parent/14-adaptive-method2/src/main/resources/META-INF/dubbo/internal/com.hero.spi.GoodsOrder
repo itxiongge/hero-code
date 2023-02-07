@@ -1,0 +1,2 @@
+alipay=com.hero.spi.AlipayGoodsOrder
+wechat=com.hero.spi.WechatGoodsOrder

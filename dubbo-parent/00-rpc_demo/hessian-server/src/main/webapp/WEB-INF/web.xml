@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+  <!--发布服务-->
+  <servlet>
+    <servlet-name>HessianServlet</servlet-name>
+    <servlet-class>com.caucho.hessian.server.HessianServlet</servlet-class>
+    <init-param>
+      <param-name>service-class</param-name>
+      <param-value>com.hero.hessian.service.impl.UserServiceImpl</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HessianServlet</servlet-name>
+    <url-pattern>/api/service</url-pattern>
+  </servlet-mapping>
+
+</web-app>

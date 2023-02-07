@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="08-provider-registers"/>
+
+    <!--声明注册中心-->
+    <dubbo:registry id="bjCenter" address="zookeeper://123.56.222.31:2181"/>  <!--北京中心-->
+    <dubbo:registry id="shCenter" address="zookeeper://101.201.71.221:2181"/>  <!--上海中心-->
+    <dubbo:registry id="gzCenter" address="zookeeper://101.17.187.78:2181"/>  <!--广州中心-->
+
+    <!--注册Service实现类-->
+    <bean id="wxPayService" class="com.hero.provider.WxPayServiceImpl"/>
+    <bean id="aliPayService" class="com.hero.provider.AliPayServiceImpl"/>
+
+    <!--暴露服务：同一个服务注册到不同的中心；不同的服务注册到不同的中心-->
+    <dubbo:service interface="com.hero.service.UserService" ref="wxPayService" group="pay.wx" register="bjCenter, shCenter"/>
+    <dubbo:service interface="com.hero.service.UserService" ref="aliPayService" group="pay.ali" register="gzCenter, cqCenter"/>
+
+</beans>

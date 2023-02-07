@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="06-consumer-timeout">
+        <dubbo:parameter key="qos.port" value="33333"/>
+    </dubbo:application>
+
+    <dubbo:registry address="zookeeper://zkOS:2181" />
+
+    <dubbo:reference id="userService" mock="true" interface="com.hero.service.UserService"/>
+    <!--&lt;!&ndash;actives限流配置&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" mock="true" actives="10" interface="com.hero.service.UserService"/>-->
+    <!--<dubbo:reference id="userService" mock="true" interface="com.hero.service.UserService">-->
+    <!--    <dubbo:method name="hello" actives="10"/>-->
+    <!--</dubbo:reference>-->
+
+    <!--&lt;!&ndash;设置当前消费者对指定接口的每个方法的并发连接数都不能超过10个&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" mock="true" connections="10" interface="com.hero.service.UserService"/>-->
+    <!--&lt;!&ndash;设置当前消费者对指定接口的hello()方法的并发连接数不能超过10个&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" mock="true" interface="com.hero.service.UserService">-->
+    <!--    <dubbo:method name="hello" connections="10"/>-->
+    <!--</dubbo:reference>-->
+
+    <!--&lt;!&ndash;设置当前消费者对指定接口的每一个方法均开启延迟连接&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" mock="true" lazy="true" interface="com.hero.service.UserService"/>-->
+    <!--&lt;!&ndash;设置当前消费者对所有接口的所有方法开启延迟连接&ndash;&gt;-->
+    <!--<dubbo:consumer lazy="true"/>-->
+
+    <!--&lt;!&ndash;设置当前消费者对指定接口的每一个方法均开启粘连连接&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" mock="true" sticky="true" interface="com.hero.service.UserService"/>-->
+    <!--&lt;!&ndash;设置当前消费者对指定接口的hello()方法均开启粘连连接&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" mock="true" interface="com.hero.service.UserService">-->
+    <!--    <dubbo:method name="hello" sticky="true"/>-->
+    <!--</dubbo:reference>-->
+
+    <!--&lt;!&ndash;通过指定负载均衡策为leastactive达到限流的目的&ndash;&gt;-->
+    <!--<dubbo:reference id="userService" loadbalance="leastactive" interface="com.hero.service.UserService"/>-->
+
+</beans>

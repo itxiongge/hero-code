@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://dubbo.apache.org/schema/dubbo
+       http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!--指定当前工程在Monitor中显示的名称，一般与工程名相同-->
+    <dubbo:application name="01-provider-main" />
+
+    <!--指定服务注册中心：不指定注册中心-->
+    <dubbo:registry address="N/A"/>
+
+    <!--注册服务执行对象-->
+    <bean id="userService" class="com.hero.provider.UserServiceImpl" />
+
+    <!--服务暴露-->
+    <dubbo:service interface="com.hero.service.UserService" ref="userService"/>
+
+    <!--<dubbo:service interface="com.hero.service.UserService" provider="two"-->
+    <!--               ref="userService" protocol="dubbo,rmi">-->
+    <!--    <dubbo:method name="hello"/>-->
+    <!--</dubbo:service>-->
+
+
+    <!--<dubbo:provider id="two" timeout="2000" protocol="dubbo" default="true"/>-->
+    <!--<dubbo:provider id="three" timeout="3000" default="false" export=""/>-->
+
+    <!--<bean id="gzzk" />-->
+    <!--<bean id="szzk" />-->
+
+</beans>

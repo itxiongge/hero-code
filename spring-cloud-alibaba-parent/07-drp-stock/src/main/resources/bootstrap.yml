@@ -1,0 +1,17 @@
+# 配置配置中心的服务地址
+spring:
+  application:
+    # 配置应用名称
+    name: msc-stock
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        group: SEATA_GROUP
+      discovery:
+        server-addr: 127.0.0.1:8848
+seata:
+  tx-service-group: my_test_tx_group
+
+logging.level.io.seata: debug

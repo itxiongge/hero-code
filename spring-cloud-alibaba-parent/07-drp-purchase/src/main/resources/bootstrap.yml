@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: msc-purchase
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        group: SEATA_GROUP
+      discovery:
+        server-addr: 127.0.0.1:8848
+seata:
+  tx-service-group: my_test_tx_group
+
+logging.level.io.seata: debug

@@ -1,0 +1,27 @@
+server:
+  # 表示，没有port参数，使用8081端口
+  port: ${port:8081}
+spring:
+  cloud:
+    # 指定nacos注册中心的地址
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    sentinel:
+      # 该配置能够使dashboard主动发现该应用
+      eager: true
+      transport:
+        # sentinel注册地址：指定服务端Dashboard的暴露端口
+        dashboard: 127.0.0.1:8888
+        # 服务接收sentinel的配置端口：接收服务端配置的当前服务端口
+        port: 8719
+  # 指定微服务名称
+  application:
+    name: msc-payment
+# 配置日志
+logging:
+  pattern:
+    console: level-%level %msg%n
+  level:
+    root: info
+    com.hero: debug

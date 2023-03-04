@@ -1,0 +1,14 @@
+# documentationPluginsBootstrapper'; nested exception is java.lang.NullPointerException
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+rocketmq:
+  name-server: 192.168.200.128:9876;192.168.200.129:9876 #rocketmq服务地址
+  producer:
+    group: group_1 # 必须指定group
+    send-message-timeout: 3000 # 消息发送超时时长，默认3s
+    retry-times-when-send-failed: 3 # 同步发送消息失败重试次数，默认2
+    retry-times-when-send-async-failed: 3 # 异步发送消息失败重试次数，默认2
+server:
+  port: 8082

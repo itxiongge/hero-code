@@ -1,0 +1,23 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: msc-gateway
+  cloud:
+    nacos:
+      # 注册中心地址【动态路由需要集成注册中心】
+      discovery:
+        server-addr:  @nacos.addr@
+    gateway:
+      discovery:
+        locator:
+          # 配置开启与DiscoveryClient整合
+          enabled: true
+      routes:
+        # 路由id
+        - id: purchase_route
+          # 路由uri地址, loadbalancer://服务名称 【DNS域名解析的思路】
+          uri: lb://msc-purchase
+          predicates:
+            # 拦截所有提供者的请求到提供者集群服务
+            - Path=/purchase/**

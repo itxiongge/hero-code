@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: msc-purchase
+  cloud:
+    nacos:
+      config:
+        server-addr:  @nacos.addr@
+        file-extension: yml
+      discovery:
+        server-addr:  @nacos.addr@

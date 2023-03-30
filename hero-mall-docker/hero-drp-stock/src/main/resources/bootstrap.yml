@@ -1,0 +1,12 @@
+# 配置配置中心的服务地址
+spring:
+  application:
+    # 配置应用名称
+    name: msc-stock
+  cloud:
+    nacos:
+      config:
+        server-addr:  @nacos.addr@
+        file-extension: yml
+      discovery:
+        server-addr:  @nacos.addr@
